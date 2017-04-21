@@ -54,10 +54,17 @@ export class UtilService {
         return returnDate;
     }
 
-    isMonthLabelValid(monthLabel: string, monthLabels: IMyMonthLabels): number {
+    isMonthLabelValid(monthLabel: string, monthLabels: IMyMonthLabels, checkContains: boolean = false): number {
         for (let key = 1; key <= 12; key++) {
-            if (monthLabels[key].toLowerCase().indexOf(monthLabel.toLowerCase()) !== -1) {
-                return key;
+            if (checkContains) {
+                if (monthLabels[key].toLowerCase().indexOf(monthLabel.toLowerCase()) !== -1) {
+                    return key;
+                }
+            }
+            else {
+                if (monthLabel.toLowerCase() === monthLabels[key].toLowerCase()) {
+                    return key;
+                }
             }
         }
         return -1;
@@ -89,7 +96,7 @@ export class UtilService {
     parseDatePartMonthName(dateFormat: string, dateString: string, datePart: string, monthLabels: IMyMonthLabels): number {
         let pos: number = dateFormat.indexOf(datePart);
         if (pos !== -1) {
-            return this.isMonthLabelValid(dateString.substring(pos, pos + datePart.length), monthLabels);
+            return this.isMonthLabelValid(dateString.substring(pos, pos + datePart.length), monthLabels, true);
         }
         return -1;
     }
