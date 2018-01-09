@@ -1,3 +1,25 @@
+# 2.4.2 (2018-01-08)
+
+### Bug Fixes
+
+* Merged #121
+
+### Features
+
+* none
+
+
+# 2.4.1 (2018-01-06)
+
+### Bug Fixes
+
+* Merged #119
+
+### Features
+
+* none
+
+
 # 2.4.0 (2017-12-26)
 
 ### Bug Fixes
