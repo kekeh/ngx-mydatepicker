@@ -497,7 +497,6 @@ describe('ngx-mydatepicker', () => {
 
         comp.closeCalendar();
 
-
         // dd.mm.yyyy
         let opts: IMyOptions = {
             dateFormat: 'dd.mm.yyyy'
@@ -520,7 +519,6 @@ describe('ngx-mydatepicker', () => {
 
         comp.closeCalendar();
 
-
         // dd mmm yyyy
         opts.dateFormat = 'dd mmm yyyy';
         comp.parseOptions(opts);
@@ -536,6 +534,26 @@ describe('ngx-mydatepicker', () => {
         fixture.detectChanges();
         selection = getElement('.myDateInput');
         expect(selection.value).toBe('01 Jan 2016');
+
+        comp.closeCalendar();
+
+        // mm.yyyy
+        opts.dateFormat = 'mm.yyyy';
+
+        comp.parseOptions(opts);
+
+        comp.openCalendar();
+
+        fixture.detectChanges();
+        currmonth = getElements('.daycell');
+        expect(currmonth).not.toBe(null);
+        expect(currmonth.length).toBe(42);
+
+        currmonth[4].click();
+
+        fixture.detectChanges();
+        selection = getElement('.myDateInput');
+        expect(selection.value).toBe('01.2016');
 
         comp.closeCalendar();
     });
