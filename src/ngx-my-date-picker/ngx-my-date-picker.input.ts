@@ -84,6 +84,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
                         this.clearDate();
                     }
                     else {
+                        this.model = null;
                         this.onChangeCb(null);
                         this.emitInputFieldChanged(this.elem.nativeElement.value, false);
                     }
@@ -241,6 +242,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
         }
         this.emitDateChanged({date: {year: 0, month: 0, day: 0}, jsdate: null, formatted: "", epoc: 0});
         this.emitInputFieldChanged("", false);
+        this.model = null;
         this.onChangeCb(null);
         this.onTouchedCb();
         this.setInputValue("");
