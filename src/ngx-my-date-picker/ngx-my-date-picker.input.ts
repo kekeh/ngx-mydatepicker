@@ -41,6 +41,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     private disabled = false;
 
     private opts: IMyOptions;
+    private model: IMyDateModel;
 
     onChangeCb: (_: any) => void = () => { };
     onTouchedCb: () => void = () => { };
@@ -83,6 +84,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
                         this.clearDate();
                     }
                     else {
+                        this.model = null;
                         this.onChangeCb(null);
                         this.emitInputFieldChanged(this.elem.nativeElement.value, false);
                     }
@@ -108,6 +110,9 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     public ngOnChanges(changes: SimpleChanges): void {
         if (changes.hasOwnProperty("options")) {
             this.parseOptions(changes["options"].currentValue);
+            if (!changes["options"].isFirstChange()) {
+                this.onChangeCb(this.model);
+            }
         }
 
         if (changes.hasOwnProperty("defaultMonth")) {
@@ -131,7 +136,6 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
         if (this.opts.maxYear > Year.max) {
             this.opts.maxYear = Year.max;
         }
-        this.validate(undefined);
     }
 
     public writeValue(value: any): void {
@@ -238,6 +242,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
         }
         this.emitDateChanged({date: {year: 0, month: 0, day: 0}, jsdate: null, formatted: "", epoc: 0});
         this.emitInputFieldChanged("", false);
+        this.model = null;
         this.onChangeCb(null);
         this.onTouchedCb();
         this.setInputValue("");
@@ -269,6 +274,7 @@ export class NgxMyDatePickerDirective implements OnChanges, ControlValueAccessor
     }
 
     private updateModel(model: IMyDateModel): void {
+        this.model = model;
         this.setInputValue(model.formatted);
         this.onChangeCb(model);
         this.onTouchedCb();
