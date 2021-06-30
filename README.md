@@ -4,6 +4,13 @@ __If your Angular version is >= 7.2 you can use a new version ([angular-mydatepi
 * [repository](https://github.com/kekeh/angular-mydatepicker) 
 * [online demo](https://kekeh.github.io/angular-mydatepicker/) 
 
+**Version compatibility of this library**
+
+| Library version | Angular version | Branch | Installation |
+| :-------------- | :-------------- | :----- | :----------- |
+| < 9.0.0 | >= 2 and < 9 | master | npm install --save ngx-mydatepicker@latest| 
+| >= 9.0.0 | >= 9 | angularIvy | npm install --save ngx-mydatepicker@ng9 | 
+
 **Angular date picker**
 
 [![Build Status](https://travis-ci.org/kekeh/ngx-mydatepicker.svg?branch=master)](https://travis-ci.org/kekeh/ngx-mydatepicker)
