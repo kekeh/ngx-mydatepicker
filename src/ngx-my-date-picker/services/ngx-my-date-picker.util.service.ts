@@ -92,7 +92,8 @@ export class UtilService {
     }
 
     getNumberByValue(df: IMyDateFormat): number {
-        if (!/^\d+$/.test(df.value)) {
+        //if (!/^\d+$/.test(df.value)) {
+        if (!(df) || !/^\d+$/.test(df.value)) {
             return -1;
         }
 
